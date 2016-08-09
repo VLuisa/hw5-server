@@ -22,7 +22,7 @@ export const getPosts = (req, res) => {
     });
   };
   Post.find()
-  // .sort('created_at')
+  .sort('created_at')
   .then(result => {
     res.json(cleanPosts(result));
   })
@@ -52,10 +52,16 @@ export const deletePost = (req, res) => {
 };
 export const updatePost = (req, res) => {
   // res.send('update a post here\n');
-  const postBody = { title: req.body.title, tags: req.body.tags, content: req.body.content };
+  const postBody = req.body;
+  Post.findById(req.params.id)
+  .then(result => {
+    for (const [key, value] of req.body) {
+      postBody[key] = value;
+    }
+  });
   Post.update({ _id: req.params.id }, postBody)
   .then(result => {
-    res.json({ message: 'Updated post!' });
+    res.json(result);
   })
   .catch(error => {
     res.json({ error });
