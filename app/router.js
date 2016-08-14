@@ -13,11 +13,11 @@ router.get('/', (req, res) => {
 // /your routes will go here
 router.route('/posts/:id')
   .get(Posts.getPost)
-  .put(Posts.updatePost)
-  .delete(Posts.deletePost);
+  .put(requireAuth, Posts.updatePost)
+  .delete(requireAuth, Posts.deletePost);
 
 router.route('/posts')
-  .post(Posts.createPost)
+  .post(requireAuth, Posts.createPost)
   .get(Posts.getPosts);
 
 router.post('/signin', requireSignin, UserController.signin);
