@@ -12,6 +12,7 @@ const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost/blog';
 
 
 mongoose.connect(mongoURI);
+
 // set mongoose promises to es6 default
 mongoose.Promise = global.Promise;
 
