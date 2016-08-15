@@ -1,11 +1,4 @@
-# starter express app template
+# HW5 part 2
+Added authentication into the backend of our customer SERVER
 
-* node with babel
-* expressjs
-* airbnb eslint rules
-
-Procfile set up to run on [heroku](https://devcenter.heroku.com/articles/getting-started-with-nodejs#deploy-the-app)
-
-- Luisa
-
-Nothing is working
+Not working: Still getting an error with Heroku server but testing on local server is fully functional
