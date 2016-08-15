@@ -20,7 +20,7 @@ export const signup = (req, res, next) => {
   }
   // Check if user already exists with that email
   // If user exists then return an error
-  User.findOne()
+  User.findOne({ email })
   .then(result => {
     if (result != null) {
       res.json({ message: 'Sorry, a user already exists with that email!' });
