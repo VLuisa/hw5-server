@@ -1,4 +1,4 @@
 # HW5 part 2
 Added authentication into the backend of our customer SERVER
 
-Not working: Still getting an error with Heroku server but testing on local server is fully functional
+Working: Author appears when you see the details of a post, signin/signup authentication, running off Heroku
