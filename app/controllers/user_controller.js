@@ -14,9 +14,10 @@ export const signin = (req, res, next) => {
 export const signup = (req, res, next) => {
   const email = req.body.email;
   const password = req.body.password;
+  const username = req.body.username;
 
   if (!email || !password) {
-    return res.status(422).send('You must provide email and password');
+    return res.status(422).send('You must provide email, password, and username');
   }
   // Check if user already exists with that email
   // If user exists then return an error
@@ -31,6 +32,7 @@ export const signup = (req, res, next) => {
       const user = new User();
       user.email = email;
       user.password = password;
+      user.username = username;
       // Save the new User object
       user.save()
       .then(res => {

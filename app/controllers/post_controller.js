@@ -1,5 +1,11 @@
 import Post from '../models/post_model';
 
+const cleanPosts = (posts) => {
+  return posts.map(post => {
+    return { id: post._id, title: post.title, tags: post.tags, author: post.author };
+  });
+};
+
 export const createPost = (req, res) => {
   // res.send('post should be created here\n');
   const post = new Post();
@@ -17,13 +23,7 @@ export const createPost = (req, res) => {
 };
 export const getPosts = (req, res) => {
   // res.send('posts should be returned\n');
-  const cleanPosts = (posts) => {
-    return posts.map(post => {
-      return { id: post._id, title: post.title, tags: post.tags };
-    });
-  };
   Post.find()
-  .sort('created_at')
   .then(result => {
     res.json(cleanPosts(result));
   })
