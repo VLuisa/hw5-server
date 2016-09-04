@@ -8,6 +8,7 @@ function tokenForUser(user) {
 }
 
 export const signin = (req, res, next) => {
+  console.log(`user from signin: ${req.user}`);
   return res.send({ token: tokenForUser(req.user) });
 };
 
@@ -15,6 +16,7 @@ export const signup = (req, res, next) => {
   const email = req.body.email;
   const password = req.body.password;
   const username = req.body.username;
+  console.log(req.body);
 
   if (!email || !password) {
     return res.status(422).send('You must provide email, password, and username');
@@ -27,12 +29,13 @@ export const signup = (req, res, next) => {
       res.json({ message: 'Sorry, a user already exists with that email!' });
     } else {
       // If not, create a new user
-
+      console.log(`result: ${result}`);
       // Create a new user
       const user = new User();
       user.email = email;
       user.password = password;
       user.username = username;
+      console.log(`signup user: ${user}`);
       // Save the new User object
       user.save()
       .then(res => {

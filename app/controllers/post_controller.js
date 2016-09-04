@@ -2,7 +2,7 @@ import Post from '../models/post_model';
 
 const cleanPosts = (posts) => {
   return posts.map(post => {
-    return { id: post._id, title: post.title, tags: post.tags, author: post.author };
+    return { id: post._id, title: post.title, tags: post.tags };
   });
 };
 
@@ -13,11 +13,14 @@ export const createPost = (req, res) => {
   post.tags = req.body.tags;
   post.content = req.body.content;
   post.author = req.user;
+  console.log(`post from createPost back: ${post}`);
   post.save()
   .then(result => {
+    console.log(`author: ${post.author}`);
     res.json({ message: 'Post created!' });
   })
   .catch(error => {
+    console.log('create error');
     res.json({ error });
   });
 };
